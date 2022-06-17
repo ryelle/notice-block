@@ -1,9 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { check, info, warning, Icon } from '@wordpress/icons';
-import { useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -13,7 +12,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save( { attributes } ) {
-	const { type } = attributes;
+	const { content, type } = attributes;
 	const className = `is-${ type }-notice`;
 
 	let icon = info;
@@ -29,12 +28,7 @@ export default function save( { attributes } ) {
 				<Icon icon={ icon } />
 			</div>
 			<div className="wp-block-ryelle-notice-block__content">
-				<p>
-					{ __(
-						'Notice Block – hello from the saved content!',
-						'notice-block'
-					) }
-				</p>
+				<RichText.Content multiline="p" value={ content } />
 			</div>
 		</div>
 	);

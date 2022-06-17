@@ -3,7 +3,11 @@
  */
 import { __ } from '@wordpress/i18n';
 import { check, info, warning, Icon } from '@wordpress/icons';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	RichText,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { PanelBody, SelectControl } from '@wordpress/components';
 
 /**
@@ -13,7 +17,7 @@ import { PanelBody, SelectControl } from '@wordpress/components';
  * @return {WPElement} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { type } = attributes;
+	const { content, type } = attributes;
 	const className = `is-${ type }-notice`;
 
 	let icon = info;
@@ -46,14 +50,15 @@ export default function Edit( { attributes, setAttributes } ) {
 				<div className="wp-block-ryelle-notice-block__icon">
 					<Icon icon={ icon } />
 				</div>
-				<div className="wp-block-ryelle-notice-block__content">
-					<p>
-						{ __(
-							'Notice Block – hello from the editor!',
-							'notice-block'
-						) }
-					</p>
-				</div>
+				<RichText
+					tagName="div"
+					multiline="p"
+					className="wp-block-ryelle-notice-block__content"
+					onChange={ ( newContent ) =>
+						setAttributes( { content: newContent } )
+					}
+					value={ content }
+				/>
 			</div>
 		</>
 	);

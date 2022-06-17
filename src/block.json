@@ -11,6 +11,12 @@
 		"html": false
 	},
 	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-ryelle-notice-block__content",
+			"multiline": "p"
+		},
 		"type": {
 			"type": "string",
 			"default": "info",
