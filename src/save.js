@@ -13,11 +13,20 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
-			{ __(
-				'Notice Block – hello from the saved content!',
-				'notice-block'
-			) }
-		</p>
+		<div { ...useBlockProps.save() }>
+			<div className="wp-block-ryelle-notice-block__icon">
+				<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="50" cy="50" r="50" />
+				</svg>
+			</div>
+			<div className="wp-block-ryelle-notice-block__content">
+				<p>
+					{ __(
+						'Notice Block – hello from the saved content!',
+						'notice-block'
+					) }
+				</p>
+			</div>
+		</div>
 	);
 }

@@ -6,7 +6,29 @@
  */
 
 .wp-block-ryelle-notice-block {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+	display: grid;
+	grid-template-columns: 4em 1fr;
+	gap: 1em;
+	border: 2px solid currentcolor;
+
+	> * {
+		align-self: start;
+	}
+
+	p:first-child {
+		margin-block-start: 1em;
+	}
+}
+
+.wp-block-ryelle-notice-block__icon {
+	padding: 1em;
+
+	svg {
+		display: block;
+	}
+}
+
+.wp-block-ryelle-notice-block__content {
+	padding-inline-end: 1em;
+	align-self: center;
 }
