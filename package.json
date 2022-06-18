@@ -18,5 +18,8 @@
 	"devDependencies": {
 		"@wordpress/prettier-config": "1.3.0",
 		"@wordpress/scripts": "23.3.0"
+	},
+	"dependencies": {
+		"@wordpress/icons": "^9.2.0"
 	}
 }

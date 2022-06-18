@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { check, info, warning, Icon } from '@wordpress/icons';
 import { useBlockProps } from '@wordpress/block-editor';
 
 /**
@@ -11,12 +12,20 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function Edit() {
+	const type = 'success'; // Will come from attributes later.
+	const className = `is-${ type }-notice`;
+
+	let icon = info;
+	if ( 'success' === type ) {
+		icon = check;
+	} else if ( 'warning' === type || 'error' === type ) {
+		icon = warning;
+	}
+
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...useBlockProps( { className } ) }>
 			<div className="wp-block-ryelle-notice-block__icon">
-				<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="50" cy="50" r="50" />
-				</svg>
+				<Icon icon={ icon } />
 			</div>
 			<div className="wp-block-ryelle-notice-block__content">
 				<p>
