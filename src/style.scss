@@ -26,7 +26,8 @@
 
 	display: grid;
 	grid-template-columns: auto 1fr;
-	gap: 1em;
+	gap: var(--wp--style--block-gap, 1em);
+	padding: 1em;
 	border: 2px solid var(--ryelle-notice-block--border);
 	background-color: var(--ryelle-notice-block--bg);
 
@@ -35,14 +36,20 @@
 	}
 
 	p:first-child {
-		margin-block-start: 1em;
+		margin-block-start: 0;
+	}
+
+	p:last-child {
+		margin-block-end: 0;
+	}
+
+	&.alignleft,
+	&.alignright {
+		max-width: 420px;
 	}
 }
 
 .wp-block-ryelle-notice-block__icon {
-	padding-block: 1em;
-	padding-inline-start: 1em;
-
 	svg {
 		display: block;
 		height: 2em;
@@ -52,6 +59,5 @@
 }
 
 .wp-block-ryelle-notice-block__content {
-	padding-inline-end: 1em;
 	align-self: center;
 }

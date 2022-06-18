@@ -8,7 +8,16 @@
 	"icon": "flag",
 	"description": "Add a color-coded notice to your post.",
 	"supports": {
-		"html": false
+		"align": true,
+		"spacing": {
+			"margin": [ "top", "bottom" ],
+			"padding": true,
+			"blockGap": false
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		}
 	},
 	"attributes": {
 		"content": {
