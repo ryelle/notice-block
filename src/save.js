@@ -12,8 +12,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
-	const type = 'success'; // Will come from attributes later.
+export default function save( { attributes } ) {
+	const { type } = attributes;
 	const className = `is-${ type }-notice`;
 
 	let icon = info;

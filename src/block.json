@@ -10,6 +10,13 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"type": {
+			"type": "string",
+			"default": "info",
+			"enum": [ "info", "warning", "error", "success" ]
+		}
+	},
 	"textdomain": "notice-block",
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css"
