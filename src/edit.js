@@ -1,18 +1,37 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import {
-	InspectorControls,
+	BlockControls,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { ToolbarDropdownMenu } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
 import Icon from './icon';
+
+const typeOptions = [
+	{ label: __( 'Informational', 'notice-block' ), value: 'info' },
+	{ label: __( 'Success', 'notice-block' ), value: 'success' },
+	{ label: __( 'Help', 'notice-block' ), value: 'help' },
+	{ label: __( 'Warning', 'notice-block' ), value: 'warning' },
+	{ label: __( 'Error', 'notice-block' ), value: 'error' },
+];
+
+/**
+ * Get the human-readable label from the current type value.
+ *
+ * @param {string} type The type slug.
+ * @return {string} The translated human-friendly label.
+ */
+function getOptionLabel( type ) {
+	const currentType = typeOptions.find( ( { value } ) => type === value );
+	return currentType.label || '';
+}
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -26,24 +45,22 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	return (
 		<>
-			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'notice-block' ) }>
-					<SelectControl
-						options={ [
-							{ value: 'info', label: 'Informational' },
-							{ value: 'success', label: 'Success' },
-							{ value: 'help', label: 'Help' },
-							{ value: 'warning', label: 'Warning' },
-							{ value: 'error', label: 'Error' },
-						] }
-						value={ type }
-						label={ __( 'Notice type', 'notice-block' ) }
-						onChange={ ( newValue ) =>
-							setAttributes( { type: newValue } )
-						}
-					/>
-				</PanelBody>
-			</InspectorControls>
+			<BlockControls group="block">
+				<ToolbarDropdownMenu
+					text={ sprintf(
+						/* translators: %s is the notice type label. */
+						__( 'Type: %s', 'notice-block' ),
+						getOptionLabel( type )
+					) }
+					icon={ false }
+					controls={ typeOptions.map( ( { label, value } ) => ( {
+						title: label,
+						icon: <Icon type={ value } />,
+						isActive: value === type,
+						onClick: () => setAttributes( { type: value } ),
+					} ) ) }
+				/>
+			</BlockControls>
 			<div { ...useBlockProps( { className } ) }>
 				<div className="wp-block-ryelle-notice-block__icon">
 					<Icon type={ type } />
