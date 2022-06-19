@@ -9,6 +9,16 @@
 	--ryelle-notice-block--border: rgb(0 83 138);
 	--ryelle-notice-block--bg: rgb(168 236 255);
 
+	&.is-success-notice {
+		--ryelle-notice-block--border: rgb(0 84 10);
+		--ryelle-notice-block--bg: rgb(190 238 188);
+	}
+
+	&.is-help-notice {
+		--ryelle-notice-block--border: rgb(107 43 121);
+		--ryelle-notice-block--bg: rgb(255 211 255);
+	}
+
 	&.is-error-notice {
 		--ryelle-notice-block--border: rgb(135 23 47);
 		--ryelle-notice-block--bg: rgb(255 206 208);
@@ -17,11 +27,6 @@
 	&.is-warning-notice {
 		--ryelle-notice-block--border: rgb(87 66 41);
 		--ryelle-notice-block--bg: rgb(252 241 182);
-	}
-
-	&.is-success-notice {
-		--ryelle-notice-block--border: rgb(0 84 10);
-		--ryelle-notice-block--bg: rgb(190 238 188);
 	}
 
 	display: grid;

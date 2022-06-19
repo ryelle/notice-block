@@ -2,13 +2,17 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { check, info, warning, Icon } from '@wordpress/icons';
 import {
 	InspectorControls,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { PanelBody, SelectControl } from '@wordpress/components';
+
+/**
+ * Internal dependencies
+ */
+import Icon from './icon';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -20,13 +24,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { content, type } = attributes;
 	const className = `is-${ type }-notice`;
 
-	let icon = info;
-	if ( 'success' === type ) {
-		icon = check;
-	} else if ( 'warning' === type || 'error' === type ) {
-		icon = warning;
-	}
-
 	return (
 		<>
 			<InspectorControls>
@@ -34,9 +31,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					<SelectControl
 						options={ [
 							{ value: 'info', label: 'Informational' },
+							{ value: 'success', label: 'Success' },
+							{ value: 'help', label: 'Help' },
 							{ value: 'warning', label: 'Warning' },
 							{ value: 'error', label: 'Error' },
-							{ value: 'success', label: 'Success' },
 						] }
 						value={ type }
 						label={ __( 'Notice type', 'notice-block' ) }
@@ -48,7 +46,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 			<div { ...useBlockProps( { className } ) }>
 				<div className="wp-block-ryelle-notice-block__icon">
-					<Icon icon={ icon } />
+					<Icon type={ type } />
 				</div>
 				<RichText
 					tagName="div"
