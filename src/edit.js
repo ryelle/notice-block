@@ -14,7 +14,7 @@ import { ToolbarDropdownMenu } from '@wordpress/components';
  */
 import Icon from './icon';
 
-const typeOptions = [
+export const typeOptions = [
 	{ label: __( 'Informational', 'notice-block' ), value: 'info' },
 	{ label: __( 'Success', 'notice-block' ), value: 'success' },
 	{ label: __( 'Help', 'notice-block' ), value: 'help' },
@@ -39,7 +39,7 @@ function getOptionLabel( type ) {
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( { attributes, setAttributes } ) {
+export function Edit( { attributes, setAttributes } ) {
 	const { content, type } = attributes;
 	const className = `is-${ type }-notice`;
 
